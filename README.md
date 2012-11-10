@@ -5,7 +5,7 @@ Get a realtime live video stream from your
 
 ## Requirements
 
-You'll needs a decent a decent and current browser and some cpu horsepower.
+You'll need a decent and current browser and some cpu horsepower.
 This code uses web-sockets and the incredibly awesome
 [Broadway.js](https://github.com/mbebenita/Broadway) to render the video frames
 in your browser using a WebGL canvas.
