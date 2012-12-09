@@ -11,28 +11,35 @@ var express = require('express')
   , server = http.createServer(app)
   , WebSocketServer = require('ws').Server
   , wss = new WebSocketServer({server: server})
-  , sockets = [];
+  , sockets = []
+  , Parser = require('./lib/PaVEParser')
+  , arDrone = require('ar-drone')
   ;
 
-var videoStream = (function init() {
-    var arDrone = require('ar-drone'),
-        tcpVideoStream = new arDrone.Client.PngStream.TcpVideoStream({timeout: 4000}),
-        Parser = require('./lib/PaVEParser'),
-        p = new Parser();
+function init() {
+    var tcpVideoStream = new arDrone.Client.PngStream.TcpVideoStream({timeout: 4000})
+      , p = new Parser();
+
+    console.log("Connecting to stream");
 
     tcpVideoStream.connect(function () {
         tcpVideoStream.pipe(p);
     });
 
-   return p; 
-})();
+    tcpVideoStream.on("error", function(err) {
+      console.log("There was an error: %s", err.message);
+      tcpVideoStream.end();
+      tcpVideoStream.emit("end");
+      init();
+    });
 
-videoStream.on('data', function (data) {
-  sockets.forEach(function(socket) {
-    socket.send(data, {binary: true});
-  });
-});
-
+    p.on('data', function (data) {
+      sockets.forEach(function(socket) {
+        socket.send(data, {binary: true});
+      });
+    });
+}
+init();
 
 wss.on('connection', function (socket) {
   sockets.push(socket);
