@@ -11,22 +11,38 @@ var express = require('express')
   , server = http.createServer(app)
   , WebSocketServer = require('ws').Server
   , wss = new WebSocketServer({server: server})
+  , sockets = [];
   ;
 
-wss.on('connection', function (socket) {
+var videoStream = (function init() {
     var arDrone = require('ar-drone'),
         tcpVideoStream = new arDrone.Client.PngStream.TcpVideoStream({timeout: 4000}),
         Parser = require('./lib/PaVEParser'),
         p = new Parser();
 
-    // TODO: handle client disconnect
-    p.on('data', function (data) {
-        socket.send(data, {binary: true});
-    });
-
     tcpVideoStream.connect(function () {
         tcpVideoStream.pipe(p);
     });
+
+   return p; 
+})();
+
+videoStream.on('data', function (data) {
+  sockets.forEach(function(socket) {
+    socket.send(data, {binary: true});
+  });
+});
+
+
+wss.on('connection', function (socket) {
+  sockets.push(socket);
+
+  socket.on("close", function() {
+    console.log("Closing socket");
+    sockets = sockets.filter(function(el) {
+      return el !== socket;
+    });
+  });
 });
 
 
