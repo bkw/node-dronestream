@@ -3,6 +3,8 @@
 Get a realtime live video stream from your
 [Parrot AR Drone 2.0](http://ardrone2.parrot.com/) straight to your browser.
 
+## Documentation is a little out of date, please check the two examples for now!
+
 ## Requirements
 
 You'll need a decent and current browser and some cpu horsepower.
