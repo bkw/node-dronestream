@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git@github.com:bkw/node-dronestream.git"
   },
-  "main": "lib/server",
+  "main": "index",
   "keywords": [
     "drone",
     "nodecopter",
