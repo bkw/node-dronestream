@@ -15,4 +15,5 @@ block append bodyscripts
     var copterStream = new NodecopterStream(document.querySelector('#dronestream'));
 
 block content
-  div#dronestream(width=640, height=360)
+  div#dronestream(width=640, height=360, style="position:relative")
+    img#sniper(src="images/sniper.png", style="position:absolute; opacity:0.6")
