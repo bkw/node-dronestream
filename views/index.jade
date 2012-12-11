@@ -9,10 +9,13 @@ block append head
   script(type='text/javascript', src='/js/vendor/broadway/canvas.js')
   script(type='text/javascript', src='/js/vendor/jsfeat/jsfeat-min.js')
   script(type='text/javascript', src='/js/nodecopter-stream.js')
+  script(type='text/javascript', src='/js/nodecopter-track.js')
 
 block append bodyscripts
   script
+    'use strict';
     var copterStream = new NodecopterStream(document.querySelector('#dronestream'));
+    var tracker = new NodecopterTrack(copterStream, '#sniper');
 
 block content
   div#dronestream(width=640, height=360, style="position:relative")
