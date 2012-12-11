@@ -5,7 +5,9 @@
     var NS,
         socket,
         avc,
-        webGLCanvas;
+        webGLCanvas,
+        width,
+        height;
 
     function setupAvc() {
         avc = new Avc();
@@ -32,9 +34,10 @@
     }
 
     function setupCanvas(div) {
-        var width = div.attributes.width ? div.attributes.width.value : 640,
-            height = div.attributes.height ? div.attributes.height.value : 360,
-            canvas = document.createElement('canvas');
+        var canvas = document.createElement('canvas');
+
+        width = div.attributes.width ? div.attributes.width.value : 640;
+        height = div.attributes.height ? div.attributes.height.value : 360;
 
         canvas.width = width;
         canvas.height = height;
@@ -56,6 +59,23 @@
         );
         socket.binaryType = 'arraybuffer';
         socket.onmessage = handleNalUnits;
+    };
+
+    NS.prototype.getImageData = function (rgbaData) {
+        var gl = webGLCanvas.gl;
+
+        gl.readPixels(
+            0, 0, width, height,
+            gl.RGBA, gl.UNSIGNED_BYTE,
+            rgbaData
+        );
+        // instead of virtically flippiong the data, we just leave it
+        // flipped a invert the coords later:
+        return;
+    };
+
+    NS.prototype.getCanvas = function () {
+        return webGLCanvas.canvas;
     };
 
     window.NodecopterStream = NS;
