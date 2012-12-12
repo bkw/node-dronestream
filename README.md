@@ -45,3 +45,5 @@ is enough to be used as a starting point for your own integration.
 - Brian Leroux for being not content with the original solution and for
   cleaning up the predecessor, nodecopter-stream.
 
+- @karlwestin for picking up where I was to lazy to actually make this usable.
+
