@@ -69,8 +69,9 @@
             gl.RGBA, gl.UNSIGNED_BYTE,
             rgbaData
         );
-        // instead of virtically flippiong the data, we just leave it
-        // flipped and invert the coords later:
+        // WebGL returns pixels upside down.
+        // Instead of wasting time by vertically flipping it now,
+        // we just leave it like it is and invert the coordinates later:
         return;
     };
 
