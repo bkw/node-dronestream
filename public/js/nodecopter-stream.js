@@ -70,7 +70,7 @@
             rgbaData
         );
         // instead of virtically flippiong the data, we just leave it
-        // flipped a invert the coords later:
+        // flipped and invert the coords later:
         return;
     };
 
