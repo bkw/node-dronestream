@@ -1,11 +1,12 @@
 {
   "name": "dronestream",
   "description": "video live stream from your parrot ar.drone 2.0 to your browser in pure javascript",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:bkw/node-dronestream.git"
   },
+  "main": "index",
   "keywords": [
     "drone",
     "nodecopter",
@@ -15,12 +16,7 @@
     "browser",
     "x264"
   ],
-  "scripts": {
-    "start": "node app"
-  },
   "dependencies": {
-    "express": "3.0.0rc5",
-    "jade": "*",
     "ws": "~0.4.22",
     "ar-drone": "0.0.3",
     "buffy": "0.0.4"
