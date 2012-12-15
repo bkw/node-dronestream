@@ -22,5 +22,11 @@
     "buffy": "0.0.4"
   },
   "author": "Bernhard K. Weisshuhn <bkw@codingforce.com>",
+  "contributors": [
+    {
+      "name": "Karl Westin",
+      "email": "karl.westin@gmail.com"
+    }
+  ],
   "license": "BSD"
 }
