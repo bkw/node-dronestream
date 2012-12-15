@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat dist/vendor/broadway/sylvester.js dist/vendor/broadway/glUtils.js dist/vendor/broadway/util.js dist/vendor/broadway/avc-codec.js dist/vendor/broadway/avc.js dist/vendor/broadway/canvas.js dist/nodecopter-stream.js > dist/nodecopter-client.js
