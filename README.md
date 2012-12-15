@@ -49,3 +49,7 @@ is enough to be used as a starting point for your own integration.
 
 - @karlwestin for picking up where I was to lazy to actually make this usable.
 
+## Demo
+
+Watch @felixge demoing node-dronestream live at german user group cgnjs:
+http://www.youtube.com/watch?v=nwGNNMJt4mE&t=19m52
