@@ -3,8 +3,6 @@
 Get a realtime live video stream from your
 [Parrot AR Drone 2.0](http://ardrone2.parrot.com/) straight to your browser.
 
-## Documentation is a little out of date, please check the two examples for now!
-
 ## Requirements
 
 You'll need a decent and current browser and some cpu horsepower.
@@ -12,6 +10,27 @@ This code uses web-sockets and the incredibly awesome
 [Broadway.js](https://github.com/mbebenita/Broadway) to render the video frames
 in your browser using a WebGL canvas.
 
+## How to use
+
+Please see the http.createServer and Express 3.0 examples in the 'examples' dir.
+You attach the stream to your server like this:
+```javascript
+// in node:
+//
+// note that the 'server' object points to a server instance and NOT an express app.
+require("dronestream").listen(server); 
+```
+
+We serve the client in the same manner as Socket.IO. Add a reference to 
+**/dronestream/nodecopter-client.js** in your template. Then attach the stream to a DOM node:
+```html
+<!-- on the client -->
+<script src="/dronestream/nodecopter-client.js"></script>
+<script>
+  // video canvas will auto-size to the DOM-node, or default to 640*360 if no size is set.
+  new NodecopterStream(document.getElementById("droneStream"));
+</script>
+```
 
 ## How it works
 
@@ -24,10 +43,9 @@ In the browser broadway takes care of the rendering of the WebGL canvas.
 
 ## Status
 
-For this release I was exclusively interested in the lowest possible latency.
-There is no error handling for the websockets, the connection to the drone or
-the video player what-so-ever. This may come eventually, or may not. I think it
-is enough to be used as a starting point for your own integration.
+Node-dronestream has gained some stability in the last release. It attempts 
+to recover lost connections to the drone, and it handles multiple clients, 
+disconnections, etc. See "How to use" for API.
 
 ## Thanks
 
