@@ -24,3 +24,9 @@
 
   * update documentation
   * add changelog
+
+1.0.2 / unreleased
+==================
+
+  * use requestAnimationFrame() for rendering video frames
+  * cleaned up express example
