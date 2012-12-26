@@ -1,8 +1,8 @@
 {
   "name": "dronestream-example",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "dependencies": {
-    "express": "3.0.0rc5",
+    "express": "3.0.x",
     "jade": "*"
   },
   "scripts": {
