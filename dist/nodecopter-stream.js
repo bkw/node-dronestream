@@ -63,12 +63,14 @@
     }
 
     function handleDecodedFrame(buffer, width, height) {
-        var lumaSize = width * height,
+        requestAnimationFrame(function () {
+            var lumaSize = width * height,
             chromaSize = lumaSize >> 2;
-        webGLCanvas.YTexture.fill(buffer.subarray(0, lumaSize));
-        webGLCanvas.UTexture.fill(buffer.subarray(lumaSize, lumaSize + chromaSize));
-        webGLCanvas.VTexture.fill(buffer.subarray(lumaSize + chromaSize, lumaSize + 2 * chromaSize));
-        webGLCanvas.drawScene();
+            webGLCanvas.YTexture.fill(buffer.subarray(0, lumaSize));
+            webGLCanvas.UTexture.fill(buffer.subarray(lumaSize, lumaSize + chromaSize));
+            webGLCanvas.VTexture.fill(buffer.subarray(lumaSize + chromaSize, lumaSize + 2 * chromaSize));
+            webGLCanvas.drawScene();
+        });
     }
 
     function setupCanvas(div) {
