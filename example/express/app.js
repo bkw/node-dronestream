@@ -28,6 +28,6 @@ app.get('/', routes.index);
  * pass in the server object to listen, not the express app
  * call 'listen' on the server, not the express app
  */
-// should be require("node-dronestream").listen(server)
+// should be require("dronestream").listen(server);
 require("../../index").listen(server);
 server.listen(3000);
