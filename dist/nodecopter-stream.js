@@ -94,7 +94,7 @@
         socket = new WebSocket(
              'ws://' +
             window.document.location.hostname + ':' +
-            window.document.location.port
+            window.document.location.port + '/dronestream'
         );
         socket.binaryType = 'arraybuffer';
         socket.onmessage = handleNalUnits;
