@@ -25,7 +25,7 @@
   * update documentation
   * add changelog
 
-1.0.2 / unreleased
+1.0.2 / 2012-12-27
 ==================
 
   * use requestAnimationFrame() for rendering video frames
