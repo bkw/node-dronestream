@@ -18,8 +18,8 @@
   ],
   "dependencies": {
     "ws": "~0.4.22",
-    "ar-drone": "0.0.3",
-    "buffy": "0.0.4"
+    "ar-drone": "0.0.5",
+    "buffy": "0.0.5"
   },
   "author": "Bernhard K. Weisshuhn <bkw@codingforce.com>",
   "contributors": [

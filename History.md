@@ -30,3 +30,4 @@
 
   * use requestAnimationFrame() for rendering video frames
   * cleaned up express example
+  * update ar-drone and buffy dependencies to latest versions
