@@ -19,6 +19,8 @@ You attach the stream to your server like this:
 //
 // note that the 'server' object points to a server instance and NOT an express app.
 require("dronestream").listen(server); 
+// if your drone is on a different IP
+require("dronestream").listen(server, { ip: "192.168.2.155" });
 ```
 
 We serve the client in the same manner as Socket.IO. Add a reference to 
