@@ -1186,14 +1186,15 @@ var FilterWebGLCanvas = (function () {
     }
 
 
-    NS = function (div) {
+    NS = function (div, options) {
         setupCanvas(div);
         setupAvc();
 
+        var hostname = options.hostname || window.document.location.hostname;
+        var port = options.port || window.document.location.port;
+
         socket = new WebSocket(
-             'ws://' +
-            window.document.location.hostname + ':' +
-            window.document.location.port + '/dronestream'
+             'ws://' + hostname + ':' + port + '/dronestream'
         );
         socket.binaryType = 'arraybuffer';
         socket.onmessage = handleNalUnits;
