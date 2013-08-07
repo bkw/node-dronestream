@@ -31,3 +31,20 @@
   * use requestAnimationFrame() for rendering video frames
   * cleaned up express example
   * update ar-drone and buffy dependencies to latest versions
+
+1.0.3 / 2013-03-19
+==================
+
+  * add custom drone ip to server options
+  * fix static files on webserver
+
+1.1.0 / 2013-08-07
+==================
+
+  * add support for custom host and port to client
+  * support passing an existing video stream
+  * switch to grunt for building
+  * express fixes
+  * remove constants for strict mode
+  * bump ws and ar-drone dependencies
+  * add hook for postprocessors
