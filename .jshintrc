@@ -1,6 +1,4 @@
 {
-    "es5" : true,
-
     "browser" : false,
     "boss" : true,
     "curly": true,
