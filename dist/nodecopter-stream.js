@@ -88,11 +88,13 @@
 
 
     NS = function (div, options) {
+        var hostname, port;
+        options = options || {};
+        hostname = options.hostname || window.document.location.hostname;
+        port = options.port || window.document.location.port;
+
         setupCanvas(div);
         setupAvc();
-
-        var hostname = options.hostname || window.document.location.hostname;
-        var port = options.port || window.document.location.port;
 
         socket = new WebSocket(
              'ws://' + hostname + ':' + port + '/dronestream'
