@@ -45,7 +45,10 @@
     var NS,
         socket,
         avc,
-        webGLCanvas;
+        webGLCanvas,
+        width,
+        height,
+        callbackOnce = null;
 
     function setupAvc() {
         avc = new Avc();
@@ -62,21 +65,34 @@
         avc.decode(new Uint8Array(message.data));
     }
 
-    function handleDecodedFrame(buffer, width, height) {
+    function handleDecodedFrame(buffer, bufWidth, bufHeight) {
+        var callback;
+
         requestAnimationFrame(function () {
-            var lumaSize = width * height,
-            chromaSize = lumaSize >> 2;
+            var lumaSize = bufWidth * bufHeight,
+                chromaSize = lumaSize >> 2;
+
             webGLCanvas.YTexture.fill(buffer.subarray(0, lumaSize));
             webGLCanvas.UTexture.fill(buffer.subarray(lumaSize, lumaSize + chromaSize));
             webGLCanvas.VTexture.fill(buffer.subarray(lumaSize + chromaSize, lumaSize + 2 * chromaSize));
             webGLCanvas.drawScene();
         });
+
+        // call callback with Y portion (grayscale image)
+        if (null !== callbackOnce && width) {
+            callback = callbackOnce;
+            callbackOnce = null;
+            // decoded buffer size may be larger,
+            // so use subarray with actual dimensions
+            callback(buffer.subarray(0, width * height));
+        }
     }
 
     function setupCanvas(div) {
-        var width = div.attributes.width ? div.attributes.width.value : 640,
-            height = div.attributes.height ? div.attributes.height.value : 360,
-            canvas = document.createElement('canvas');
+        var canvas = document.createElement('canvas');
+
+        width = div.attributes.width ? div.attributes.width.value : 640;
+        height = div.attributes.height ? div.attributes.height.value : 360;
 
         canvas.width = width;
         canvas.height = height;
@@ -101,6 +117,11 @@
         );
         socket.binaryType = 'arraybuffer';
         socket.onmessage = handleNalUnits;
+    };
+
+    // enqueue callback oto be called with next (black&white) frame
+    NS.prototype.onNextFrame = function (callback) {
+        callbackOnce = callback;
     };
 
     window.NodecopterStream = NS;
