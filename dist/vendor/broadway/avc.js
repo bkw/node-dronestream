@@ -11,7 +11,7 @@ HEAP32 = Module.HEAP32;
 _h264bsdClip = Module._get_h264bsdClip();
 
 var Avc = (function avc() {
-  const MAX_STREAM_BUFFER_LENGTH = 1024 * 1024;
+  var MAX_STREAM_BUFFER_LENGTH = 1024 * 1024;
   
   function constructor() {
     Module._broadwayInit();
