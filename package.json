@@ -17,8 +17,8 @@
     "x264"
   ],
   "dependencies": {
-    "ar-drone": "0.0.5",
     "ws": "~0.4.27",
+    "ar-drone": "0.1.0",
     "buffy": "0.0.5"
   },
   "devDependencies": {
