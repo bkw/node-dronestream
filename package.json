@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "ws": "~0.4.27",
-    "ar-drone": "0.1.0",
+    "ar-drone": "0.2.0",
     "buffy": "0.0.5"
   },
   "devDependencies": {
