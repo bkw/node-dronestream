@@ -48,3 +48,10 @@
   * remove constants for strict mode
   * bump ws and ar-drone dependencies
   * add hook for postprocessors
+
+1.1.1 / 2013-08-31
+==================
+
+  * use cleaned up version of broadways avc.js, fixes errors about 'clip'
+  * switch to ardrone 0.2.0
+
