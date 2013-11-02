@@ -80,11 +80,6 @@
                 webGLCanvases[i].VTexture.fill(buffer.subarray(lumaSize + chromaSize, lumaSize + 2 * chromaSize));
                 webGLCanvases[i].drawScene();
             }
-            
-            /*webGLCanvas.YTexture.fill(buffer.subarray(0, lumaSize));
-            webGLCanvas.UTexture.fill(buffer.subarray(lumaSize, lumaSize + chromaSize));
-            webGLCanvas.VTexture.fill(buffer.subarray(lumaSize + chromaSize, lumaSize + 2 * chromaSize));
-            webGLCanvas.drawScene();*/
         });
 
         // call callback with Y portion (grayscale image)
@@ -109,7 +104,6 @@
         div.appendChild(canvas);
 
         webGLCanvases.push(new YUVWebGLCanvas(canvas, new Size(width, height)));
-        //webGLCanvas = new YUVWebGLCanvas(canvas, new Size(width, height));
     }
 
 
@@ -121,6 +115,7 @@
 
         setupCanvas(div);
         if(div2){
+            //If we've got a second div, set that up as well.
             setupCanvas(div2);
         }
         setupAvc();
