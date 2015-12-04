@@ -42,13 +42,14 @@
 /* NodeCopterStream: */
 (function (window, document, undefined) {
     'use strict';
-    var NS,
-        socket,
-        avc,
-        webGLCanvas,
-        width,
-        height,
-        callbackOnce = null;
+    var NS;
+    var socket;
+    var avc;
+    var webGLCanvases = [];
+    var webGLCanvas;
+    var width;
+    var height;
+    var callbackOnce = null;
 
     function setupAvc() {
         avc = new Avc();
@@ -72,10 +73,13 @@
             var lumaSize = bufWidth * bufHeight,
                 chromaSize = lumaSize >> 2;
 
-            webGLCanvas.YTexture.fill(buffer.subarray(0, lumaSize));
-            webGLCanvas.UTexture.fill(buffer.subarray(lumaSize, lumaSize + chromaSize));
-            webGLCanvas.VTexture.fill(buffer.subarray(lumaSize + chromaSize, lumaSize + 2 * chromaSize));
-            webGLCanvas.drawScene();
+            for(var i = 0; i < webGLCanvases.length; i++)
+            {   
+                webGLCanvases[i].YTexture.fill(buffer.subarray(0, lumaSize));
+                webGLCanvases[i].UTexture.fill(buffer.subarray(lumaSize, lumaSize + chromaSize));
+                webGLCanvases[i].VTexture.fill(buffer.subarray(lumaSize + chromaSize, lumaSize + 2 * chromaSize));
+                webGLCanvases[i].drawScene();
+            }
         });
 
         // call callback with Y portion (grayscale image)
@@ -91,25 +95,29 @@
     function setupCanvas(div) {
         var canvas = document.createElement('canvas');
 
-        width = div.attributes.width ? div.attributes.width.value : 640;
-        height = div.attributes.height ? div.attributes.height.value : 360;
+        width = div.attributes.width ? div.attributes.width.value : "640";
+        height = div.attributes.height ? div.attributes.height.value : "360";
 
         canvas.width = width;
         canvas.height = height;
         canvas.style.backgroundColor = "#333333";
         div.appendChild(canvas);
 
-        webGLCanvas = new YUVWebGLCanvas(canvas, new Size(width, height));
+        webGLCanvases.push(new YUVWebGLCanvas(canvas, new Size(width, height)));
     }
 
 
-    NS = function (div, options) {
+    NS = function (div, options, div2) {
         var hostname, port;
         options = options || {};
         hostname = options.hostname || window.document.location.hostname;
         port = options.port || window.document.location.port;
 
         setupCanvas(div);
+        if(div2){
+            //If we've got a second div, set that up as well.
+            setupCanvas(div2);
+        }
         setupAvc();
 
         socket = new WebSocket(
